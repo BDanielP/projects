@@ -1,0 +1,67 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+
+using namespace std;
+int A, B, x, cnt = 0;
+
+
+int main() {
+	ofstream iFile, oFile;
+	iFile.open("D://tep.txt");
+	oFile.open("D://outfile.txt");
+	vector<int>A_arr, B_arr,C_arr, New_arrA, New_arrB;
+
+	if (iFile.is_open()) {
+		cout << "Value A: ";
+		cin >> A;
+		iFile << A << endl;
+		for (int i = 0; i < A; i++) {
+			cin >> x;
+			iFile << x << " ";
+			A_arr.push_back(x);
+		}
+		system("cls");
+		cout << "Value B: ";
+		cin >> B;
+		iFile << "\n" << B << endl;
+		for (int i = 0; i < B; i++) {
+			cin >> x;
+			iFile << x << " ";
+			B_arr.push_back(x);
+		}
+		system("cls");
+		iFile.close();
+	}
+	else
+		cout << "Unable to open tep.txt";
+
+	if (oFile.is_open()) {
+		for (unsigned int i = 0; i < A_arr.size(); i++) {
+			for (unsigned int j = 0; j < B_arr.size(); j++) {
+				if (A_arr[i] == B_arr[j]) {
+					cnt++;
+					C_arr.push_back(A_arr[i]);
+					New_arrA.push_back(i+1);
+					New_arrB.push_back(j+1);
+				}
+			}
+		}
+		oFile << cnt << endl;
+		for (unsigned int i = 0; i < C_arr.size(); i++) {
+			oFile << C_arr[i] << " ";
+		}
+		oFile << endl;
+		for (unsigned int i = 0; i < New_arrA.size(); i++) {
+			oFile << New_arrA[i] << " ";
+		}
+		oFile << endl;
+		for (unsigned int i = 0; i < New_arrB.size(); i++) {
+			oFile << New_arrB[i] << " ";
+		}
+		oFile.close();
+	}
+	else
+		cout << "Unable to open outfile.txt";
+	return 0;
+}
