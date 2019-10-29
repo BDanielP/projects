@@ -1,0 +1,25 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+	int a, b, k, total = 0, n;
+	ifstream iFile; iFile.open("D://tep.txt");
+	ofstream oFile; oFile.open("D://output.txt");
+	if (iFile.is_open()) {
+		iFile >> a >> b >> k;
+	}
+	else
+		cout << "Unable to open file";
+	if (oFile.is_open()) {
+		for (int i = a; i <= b; i++) {
+			if (i % k == 0) {
+				total += i;
+			}
+		}
+		oFile << total;
+	}
+	else
+		cout << "Unable to open file";
+}
