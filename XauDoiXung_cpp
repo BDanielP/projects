@@ -1,0 +1,45 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	string s, new_s;
+	ifstream iFile; iFile.open("D://tep.txt");
+	ofstream oFile; oFile.open("D://output.txt");
+	int leng, cnt = 0;
+	bool check = true;
+	if (iFile.is_open()) {
+		getline(iFile, s);
+		for (size_t i = 1; i <= s.length(); i++) {
+			rotate(s.begin(), s.begin() + 1, s.end());
+			new_s = s;
+			leng = s.length() - 1;
+			cout << "String " << i << " = ";
+			cout << new_s << "\n\n";
+			for (size_t j = 0; j < new_s.length(); j++) {
+				if (new_s[j] != new_s[leng]) {
+					check = false;
+					break;
+				}
+				else if (i > leng) {
+					break;
+				}
+				else leng--;
+			}
+			if (check == true) {
+				cnt++;
+			}
+			s = new_s;
+			check = true;
+		}
+	}
+	else cout << "Error";
+	if (oFile.is_open()) {
+		oFile << cnt;
+	}
+	else cout << "Error";
+}
