@@ -1,2 +1,2 @@
-# projects
+# C++ exam
 Bai 1
